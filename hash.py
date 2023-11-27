@@ -14,6 +14,14 @@ parser = argparse.ArgumentParser(description="Hashing Text")
 parser.add_argument(
     "-t", "--text", type=str, help="Text that will be hashed", required=True
 )
+parser.add_argument(
+    "-c",
+    "--copy",
+    help="copy hashed to clipboard",
+    action="store_true",
+    default=False,
+    required=False,
+)
 
 parser.add_argument(
     "-m",
@@ -39,5 +47,9 @@ parser.add_argument(
 args = parser.parse_args()
 hash_function = getattr(hashlib, args.Method)
 hashed = hash_function(str(args.text).encode()).hexdigest()
-pyperclip.copy(hashed)
+if args.copy == True:
+    pyperclip.copy(hashed)
+else:
+    pass
+
 print(f"{args.Method} Hash is :", hashed)
