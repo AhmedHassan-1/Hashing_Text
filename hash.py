@@ -29,6 +29,7 @@ parser.add_argument(
     type=str,
     help="defult: Md5",
     choices=[
+        "sha1",
         "md5",
         "sha224",
         "sha256",
@@ -51,5 +52,4 @@ if args.copy == True:
     pyperclip.copy(hashed)
 else:
     pass
-
 print(f"{args.Method} Hash is :", hashed)
